@@ -1,3 +1,6 @@
+Estoy realizando unos ejercicios de programacion funcional, te envio la instruccion y como los desarolle indicame si hay una manera de optimizarlos y mejorarlos, pero sin usar funciones avanzadas, solo usar las que use yo como: filter, map, max, min
+recuerda que estan realizados en scala 3 :
+
 case class Ciudad(nombre: String, temps: List[Double])
 val ciudades: List[Ciudad] = List(
   Ciudad("Loja",List(18.0, 19.2, 17.5, 20.1, 21.0, 18.7, 19.3)),
@@ -26,15 +29,24 @@ val ciudades: List[Ciudad] = List(
 val ciudadesValidas: List[Ciudad] = ciudades.filter(_.temps.length >= 5)
 
 //Ejercicio 2
-def variacionTermica(ciudad: Ciudad):Double =
-  ciudad.temps.max - ciudad.temps.min
-val temperaturas: List[Double] = ciudadesValidas.map(variacionTermica)
+val temperaturas: List[Double] = ciudadesValidas.map(n => n.temps.max - n.temps.min)
 
-//Ejercicio 3
-def ciudadMasVarTerm(ciudadesV: List[Ciudad]): Ciudad =
-  ciudadesV.maxBy(variacionTermica) // mejoramiento de la funcion usando maxBy
+//Ejercicio 3 
+def ciudadMasVarTerm(ciudadesV: List[Ciudad]): Ciudad = 
+  val ciudadmasvar = ciudadesV.filter(n => n.temps.max - n.temps.min == temperaturas.max)
+  ciudadmasvar(0)
 
 //Ejericicio 4
-val variacionMax = temperaturas.max
-print(s"La ciudad con mas variacion termica:  ${ciudadMasVarTerm(ciudadesValidas).nombre}")
-print(s"con una variacion de : $variacionMax") //Acortamiento y uso de $ para unir expresion en el print 
+print("La ciudad con mas variacion termica: ")
+print(ciudadMasVarTerm(ciudadesValidas).nombre)
+print("con una variacion de : ")
+print(temperaturas.max)
+
+
+-----------------------------------------------------------------------------------------------Respuesta inicial de "Claude" : 
+Tu código está bien estructurado y funciona correctamente. Aquí te comparto algunas observaciones y optimizaciones manteniendo el enfoque funcional y las funciones que ya usas:
+Observaciones principales:
+Ejercicio 3 - Problema de acoplamiento:
+Tu función ciudadMasVarTerm depende de la variable externa temperaturas, lo cual rompe la independencia de la función. Si llamas la función con datos diferentes, seguirá usando el temperaturas.max calculado originalmente.
+Ejercicio 4 - Estilo de impresión:
+Múltiples print consecutivos pueden simplificarse.
