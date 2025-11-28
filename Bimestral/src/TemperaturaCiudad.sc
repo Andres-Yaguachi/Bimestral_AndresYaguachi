@@ -23,6 +23,18 @@ val ciudades: List[Ciudad] = List(
 )
 
 //Ejercicio 1
-val ciudTemp5: List[Ciudad] = ciudades.filter(_.temps.length >= 5)
+val ciudadesValidas: List[Ciudad] = ciudades.filter(_.temps.length >= 5)
 
 //Ejercicio 2
+val temperaturas: List[Double] = ciudadesValidas.map(n => n.temps.max - n.temps.min)
+
+//Ejercicio 3 
+def ciudadMasVarTerm(ciudadesV: List[Ciudad]): Ciudad = 
+  val ciudadmasvar = ciudadesV.filter(n => n.temps.max - n.temps.min == temperaturas.max)
+  ciudadmasvar(0)
+
+//Ejericicio 4
+print("La ciudad con mas variacion termica: ")
+print(ciudadMasVarTerm(ciudadesValidas).nombre)
+print("con una variacion de : ")
+print(temperaturas.max)
