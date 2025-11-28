@@ -37,4 +37,4 @@ def ciudadMasVarTerm(ciudadesV: List[Ciudad]): Ciudad =
 //Ejericicio 4
 val variacionMax = temperaturas.max
 print(s"La ciudad con mas variacion termica:  ${ciudadMasVarTerm(ciudadesValidas).nombre}")
-print(s"con una variacion de : $variacionMax") //Acortamiento y uso de $ para unir expresion en el print 
+print(s"con una variacion de : $variacionMax") //Acortamiento y uso de $ para unir expresion en el print
